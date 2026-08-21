@@ -1,0 +1,176 @@
+% science_template.tex
+% See accompanying readme.txt for copyright statement, change log etc.
+
+% Any modification of this template, including writing a paper using it,
+% MUST rename the file i.e. use a different file name.
+
+%%%%%%%%%%%%%%%% START OF PREAMBLE %%%%%%%%%%%%%%%
+
+% Basic setup. Authors shouldn't need to adjust these commands.
+% It's annoying, but please do NOT strip these into a separate file.
+% They need to be included in this .tex for our production software to work.
+
+% Use the basic LaTeX article class, 12pt text
+\documentclass[12pt]{article}
+
+% Science uses Times font. If you don't have this installed (most LaTeX installations will be
+% fine) or prefer the old Computer Modern fonts, comment out the following line
+\usepackage{newtxtext,newtxmath}
+% Depending on your LaTeX fonts installation, you might get better results with one or both of these:
+%\usepackage{mathptmx}
+%\usepackage{txfonts}
+
+% Allow external graphics files
+\usepackage{graphicx}
+
+%%% Tompkins IMPORTS
+% Mathematics and Times-style fonts
+\usepackage{amsmath}
+
+% Use US letter sized paper with 1 inch margins
+\usepackage[letterpaper,margin=1in]{geometry}
+
+%%% Tompkins imports
+\usepackage{tikz}
+\usepackage{newfloat}
+\usetikzlibrary{decorations.pathreplacing}
+
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+\setlength{\textwidth}{6.5in}
+\setlength{\topmargin}{-0.5in}
+\setlength{\textheight}{9in}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.9em}
+\setlength{\emergencystretch}{3em}
+
+\newcommand{\photoplaceholder}[1]{%
+    \begin{center}
+    \fbox{\begin{minipage}[c][2.2in][c]{0.78\textwidth}
+    \centering\textbf{PHOTO PLACEHOLDER}\\[8pt]#1
+    \end{minipage}}
+    \end{center}}
+
+% Drawings receive their own “Example” counter.
+\DeclareFloatingEnvironment[
+    name=Example,
+    listname={List of Examples}
+]{example}
+
+% Double line spacing, including in captions
+\linespread{1.5} % For some reason double spacing is 1.5, not 2.0!
+
+% One space after each sentence
+\frenchspacing
+
+% Abstract formatting and spacing - no heading
+\renewenvironment{abstract}
+{\quotation}
+{\endquotation}
+
+% No date in the title section
+\date{}
+
+% Reference section heading
+\renewcommand\refname{References and Notes}
+
+% Figure and Table labels in bold
+\makeatletter
+\renewcommand{\fnum@figure}{\textbf{Figure \thefigure}}
+\renewcommand{\fnum@table}{\textbf{Table \thetable}}
+\makeatother
+
+
+
+% Provides the \url command, and fixes a crash if URLs or DOIs contain underscores
+\usepackage{url}
+
+%%%%%%%%%%%% CUSTOM COMMANDS AND PACKAGES %%%%%%%%%%%%
+
+% Authors can define simple custom commands e.g. as shortcuts to save on typing
+% Use \newcommand (not \def) to avoid overwriting existing commands.
+% Keep them as simple as possible and note the warning in the text below.
+
+% Example:
+\newcommand{\pcc}{\,cm$^{-3}$}	% per cm-cubed
+
+% If your BibTeX uses shortcuts for journal names, define them here e.g.
+% \newcommand{\apj}{Astrophys.~J.}
+
+% Please DO NOT import additional external packages or .sty files.
+% Those are unlikely to work with our conversion software and will cause problems later.
+% Don't add any more \usepackage{} commands.
+
+
+%%%%%%%%%%%%%%%% TITLE AND AUTHORS %%%%%%%%%%%%%%%%
+
+% Title of the paper.
+% Keep it short and understandable by any reader of Science.
+% Avoid acronyms or jargon. Use sentence case.
+\def\scititle{
+    \textbf{A SIMPLE PROOF OF P v NP}
+}
+% Store the title in a variable for reuse in the supplement (otherwise \maketitle deletes it)
+\title{\bfseries \boldmath \scititle}
+
+% Author and institution list.
+% Institution numbers etc. should be hard-coded, do *not* use the \footnote command.
+\author{
+% You can write out first names or use initials - either way is acceptable, but be consistent
+    Christopher Robinson Tompkins III, Independent, Richmond, VA\and\
+% Do not include street addresses, postal codes etc.
+%
+% Identify at least one corresponding author, with contact email address
+    Corresponding author. Email: chtompki@apache.org,\\ chtompki@vt.edu, tompkinscr@vcu.edu
+% Joint contributions can be indicated like this
+}
+
+%%%%%%%%%%%%%%%%% END OF PREAMBLE %%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%% START OF MAIN TEXT %%%%%%%%%%%%%%%
+\begin{document}
+
+% Insert the title and author list
+    \maketitle
+
+% Abstract, in bold
+% There are strict length limits, and not all formats have abstracts.
+% Consult the journal instructions to authors for details.
+% Do not cite any references in the abstract.
+    \begin{abstract} \bfseries \boldmath
+        A proof of the PvNP problem such that a grade schooler should be able to understand. I am
+        writing for my daughters Margo (10) and Nora (12).
+    \end{abstract}
+
+
+    \textbf{(0)}
+    \begin{center}
+        \emph{Dedicated to the memory of those killed at Virginia Tech,\\
+        and in solidarity with those who were injured, their families,\\
+        and the Virginia Tech community.}
+        \qquad\\
+        \emph{I would like to acknowledge the following people that helped me along the way: mom, dad, Margo, Nora,
+            Griff Elder (and the 2007 VT Mathematics department and all my friends from there), George McNulty (and the 2009 USC Mathematics department and all my friends from there),
+            Andy Lewis (and the VCU 2026 Mathematics Department and all my friends from there), and those at NASA whom I've worked with.}
+    \end{center}
+
+    \newpage
+    \textbf{(1)}
+    \section*{DEFINITIONS}
+
+    Before going into the proof we need to clarify what the complexity classes \textbf{P} and \textbf{NP} are.
+
+    \section*{REFERENCES}
+
+    \begin{enumerate}
+        \item Stephen Cook, ``The complexity of theorem-proving procedures,''
+        \emph{Conference Record of Third Annual ACM Symposium on Theory of Computing},
+        pages 151-158, 1971.
+        \item Stephen Cook, ``The \bf{P} versus \bf{NP} Problem,''
+        \emph{Official Problem Description for the Millennium Prize Problems},
+        Clay Mathematics Institute, 2000,
+        \url{https://www.claymath.org/wp-content/uploads/2022/06/pvsnp.pdf}
+    \end{enumerate}
+
+\end{document}
