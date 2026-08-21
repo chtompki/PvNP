@@ -11,11 +11,10 @@
 % They need to be included in this .tex for our production software to work.
 
 % Use the basic LaTeX article class, 12pt text
-\documentclass[12pt]{article}
+\documentclass[11pt]{article}
 
 % Science uses Times font. If you don't have this installed (most LaTeX installations will be
 % fine) or prefer the old Computer Modern fonts, comment out the following line
-\usepackage{newtxtext,newtxmath}
 % Depending on your LaTeX fonts installation, you might get better results with one or both of these:
 %\usepackage{mathptmx}
 %\usepackage{txfonts}
@@ -23,45 +22,23 @@
 % Allow external graphics files
 \usepackage{graphicx}
 
-%%% Tompkins IMPORTS
-% Mathematics and Times-style fonts
-\usepackage{amsmath}
 
-% Use US letter sized paper with 1 inch margins
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{newtxtext}
+\usepackage{newtxmath}
+
+
 \usepackage[letterpaper,margin=1in]{geometry}
 
-%%% Tompkins imports
-\usepackage{tikz}
-\usepackage{newfloat}
-\usetikzlibrary{decorations.pathreplacing}
-
-\setlength{\oddsidemargin}{0in}
-\setlength{\evensidemargin}{0in}
-\setlength{\textwidth}{6.5in}
-\setlength{\topmargin}{-0.5in}
-\setlength{\textheight}{9in}
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{0.9em}
-\setlength{\emergencystretch}{3em}
-
-\newcommand{\photoplaceholder}[1]{%
-    \begin{center}
-    \fbox{\begin{minipage}[c][2.2in][c]{0.78\textwidth}
-    \centering\textbf{PHOTO PLACEHOLDER}\\[8pt]#1
-    \end{minipage}}
-    \end{center}}
-
-% Drawings receive their own “Example” counter.
-\DeclareFloatingEnvironment[
-    name=Example,
-    listname={List of Examples}
-]{example}
 
 % Double line spacing, including in captions
 \linespread{1.5} % For some reason double spacing is 1.5, not 2.0!
 
 % One space after each sentence
 \frenchspacing
+
+\newtheorem*{theorem}{Theorem}
 
 % Abstract formatting and spacing - no heading
 \renewenvironment{abstract}
@@ -160,17 +137,62 @@
     \section*{DEFINITIONS}
 
     Before going into the proof we need to clarify what the complexity classes \textbf{P} and \textbf{NP} are.
+    Note we could go into extensive details about \emph{deterministic Turing machines} and more importantly
+    \emph{non-deterministic Turing machines} (more specifically Turing machines that are \emph{not} deterministic),
+    but we need not add that amount of complexity for a paper that needs to be understood by grade schoolers.
 
+    We mainly concern ourselves with the English verbal definitions here, as we need no more than that for our proof.
+
+    \textbf{P} is the \emph{deterministic polynomial time algorithms}.
+
+    \textbf{NP} is the \emph{non-deterministic polynomial time algorithms} or more importantly
+    \emph{the \textbf{not} deterministic polynomial time algorithms}.
+
+
+    \textbf{(2)}
+    \section*{CLAIM AND PROOF}
+    \begin{theorem}
+        $\textbf{P} = \textbf{NP}$ and $\textbf{P} \neq \textbf{NP}$, simultaneously.
+    \end{theorem}
+
+    \begin{proof}
+        We begin by writing out \textbf{P} and \textbf{NP} in the English as stipulated above with assuming they are
+        equal. So we set:
+        \begin{eqnarray*}
+            \text{polynomial time algorithms} & = & \text{non-deterministic polynomial time algorithms} \\
+            \text{(polynomial time algorithms)} & = & \text{non-(deterministic polynomial time algorithms)} \\
+            \text{(polynomial time algorithms)} & = & \text{not-(deterministic polynomial time algorithms)} \\
+            q & = & \text{not } q,
+        \end{eqnarray*}
+        where $q=\text{``polynomial time algorithms''}$. But $q = \text{not } q$ is simply the liar's paradox,
+        otherwise known as \emph{The Great Antinomy} in the \emph{Principia Mathematica}. \textbf{QED}
+    \end{proof}
+
+    So the \textbf{P} versus \textbf{NP} problem is independent (i.e. is simultaneously \emph{true} and \emph{false}).
+    A more complex combinatorial proof is that it reduces to the Continuum Hypothesis, an exercise left to the reader
+    after the hit and needed set-theory correction (note: set-theory has strayed from the original definitions unfortunately)
+    that $\aleph_0$ is the size of the \emph{arbitrarily large finite integer $n$}, as given by Cantor and Russell.
+
+
+    \clearpage
     \section*{REFERENCES}
 
     \begin{enumerate}
+        \item G. Cantor, ``Ueber eine elementare Frage der
+        Mannigfaltigkeitslehre,'' \emph{Jahresbericht der Deutschen
+        Mathematiker-Vereinigung} \textbf{1}, 72--78 (1890/91).
+
         \item Stephen Cook, ``The complexity of theorem-proving procedures,''
         \emph{Conference Record of Third Annual ACM Symposium on Theory of Computing},
         pages 151-158, 1971.
-        \item Stephen Cook, ``The \bf{P} versus \bf{NP} Problem,''
+
+        \item Stephen Cook, ``The \textbf{P} versus \textbf{NP} Problem,''
         \emph{Official Problem Description for the Millennium Prize Problems},
         Clay Mathematics Institute, 2000,
-        \url{https://www.claymath.org/wp-content/uploads/2022/06/pvsnp.pdf}
+        \url{https://www.claymath.org/wp-content/uploads/2022/06/pvsnp.pdf}.
+
+        \item A. N. Whitehead and B. Russell, \emph{Principia Mathematica},
+        vols. 1--3 (Cambridge University Press, 1910--1913).
     \end{enumerate}
 
 \end{document}
